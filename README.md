@@ -37,7 +37,7 @@ When using this library you will need the following in your maven build or the e
 ```
 ## Usage
 To start using the controller, the following items need to be done:
-'''
+```
 
 		NestSession theSession = null;
 
@@ -66,4 +66,4 @@ To start using the controller, the following items need to be done:
 
 		String fanmode = "auto"; /* on or auto */
 		thermo1.setFanMode(fanmode);
-'''
+```
