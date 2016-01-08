@@ -5,6 +5,23 @@ To customize and build it yourself, build a new jar with maven:
 ```
 mvn install
 ```
+Another way to include this project is thru the use of jitpack.io to include this as a Maven item:
+```
+	<repositories>
+		<repository>
+	    	<id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+		    <groupId>com.github.bwssytems</groupId>
+		    <artifactId>nest-controller</artifactId>
+		    <version>1.0.0</version>
+		</dependency>
+	</dependencies>
+```
 Otherwise, downloads are available at https://github.com/bwssytems/nest-controller/releases.
 ## Dependencies
 When using this library you will need the following in your maven build or the equivalent jars included with your distribution:
