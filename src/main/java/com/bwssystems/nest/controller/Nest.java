@@ -18,6 +18,7 @@ import com.bwssystems.nest.protocol.status.Structure;
 import com.bwssystems.nest.protocol.status.StructureDeserializer;
 import com.bwssystems.nest.protocol.status.Where;
 import com.bwssystems.nest.protocol.status.WhereDeserializer;
+import com.bwssystems.nest.protocol.status.WhereDetail;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -79,5 +80,9 @@ public class Nest {
 
 	public Set<String> getHomeNames() {
 		return theHomes.keySet();
+	}
+	
+	public WhereDetail getWhere(String aName) {
+		return theStatus.getWhere().getWheres().get(aName);
 	}
 }

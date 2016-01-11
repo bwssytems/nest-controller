@@ -14,7 +14,7 @@ public class Where {
 		this.wheres = theWheres;
 	}
 
-	public Map<String, WhereDetail> getDevices() {
+	public Map<String, WhereDetail> getWheres() {
 		return wheres;
 	}
 

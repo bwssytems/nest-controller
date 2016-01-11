@@ -1,5 +1,6 @@
 package com.bwssystems.nest.test;
 
+import java.util.ListIterator;
 import java.util.Set;
 
 import com.bwssystems.nest.controller.Home;
@@ -7,6 +8,8 @@ import com.bwssystems.nest.controller.Nest;
 import com.bwssystems.nest.controller.NestSession;
 import com.bwssystems.nest.controller.Thermostat;
 import com.bwssystems.nest.protocol.error.LoginException;
+import com.bwssystems.nest.protocol.status.WhereDetail;
+import com.bwssystems.nest.protocol.status.WhereItem;
 
 public class TestBridge {
 	public static void main(String[] args) {
@@ -26,15 +29,35 @@ public class TestBridge {
 		for(String name : homeNames) {
 			if(aHome == null)
 				aHome = theNest.getHome(name);
-			System.out.println("Home Structure: " + theNest.getHome(name).getName() + "," + theNest.getHome(name).getDetail().getUser());
+			System.out.println("Home Structure: " + theNest.getHome(name).getDetail().getName() + ", " + theNest.getHome(name).getDetail().getUser() + ", " + name);
 		}
+		Thermostat thermo = null;
 		Thermostat thermo1 = null;
 		Set<String> thermoNames = theNest.getThermostatNames();
 		System.out.println("----------------------------------------");
 		for(String name : thermoNames) {
+			thermo = theNest.getThermostat(name);
 			if(thermo1 == null)
 				thermo1 = theNest.getThermostat(name);
-			System.out.println("Thermotat: " + theNest.getThermostat(name).getDeviceName() + ", " + theNest.getThermostat(name).getDeviceDetail().getHeaterSource());
+			String where = null;
+			String homeName= null;
+			Boolean found = false;
+			for(String aHomeName : homeNames) {
+				WhereDetail aDetail = theNest.getWhere(aHomeName);
+				ListIterator<WhereItem> anIterator = aDetail.getWheres().listIterator();
+				while(anIterator.hasNext()) {
+					WhereItem aWhereItem = (WhereItem) anIterator.next();
+					if(aWhereItem.getWhereId().equals(thermo.getDeviceDetail().getWhereId())) {
+						where = aWhereItem.getName();
+						homeName = theNest.getHome(aHomeName).getDetail().getName();
+						found = true;
+						break;
+					}
+				}
+				if(found)
+					break;
+			}
+			System.out.println("Thermotat: " + where + "(" + name.substring(name.length() - 4) + "), Location: " + where + " - " + homeName);
 		}
 		System.out.println("********************************************************");
 		System.out.println("Set Away: " + false);
