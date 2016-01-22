@@ -100,13 +100,13 @@ public class NestSession {
 	}
 	
 	public String execute(HttpRequestBase aRequest) {
+        aRequest.setHeader("Authorization", "Basic " + theAuth.getAccess_token());
         retry = 0;
         return _execute(aRequest);
 	}
 	
 	private String _execute(HttpRequestBase aRequest) {
 		try {
-	        aRequest.setHeader("Authorization", "Basic " + theAuth.getAccess_token());
 			response = httpclient.execute(aRequest);
             theLine = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
             theBody = theLine.readLine();
@@ -129,6 +129,7 @@ public class NestSession {
 				retry++;	
 				try {
 					_login();
+			        aRequest.setHeader("Authorization", "Basic " + theAuth.getAccess_token());
 					theBody = _execute(aRequest);
 				} catch (LoginException e1) {
 					log.warn("_execute retry login failed, count number: " + retry);
