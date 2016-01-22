@@ -100,13 +100,13 @@ public class NestSession {
 	}
 	
 	public String execute(HttpRequestBase aRequest) {
-        aRequest.setHeader("Authorization", "Basic " + theAuth.getAccess_token());
         retry = 0;
         return _execute(aRequest);
 	}
 	
 	private String _execute(HttpRequestBase aRequest) {
 		try {
+	        aRequest.setHeader("Authorization", "Basic " + theAuth.getAccess_token());
 			response = httpclient.execute(aRequest);
             theLine = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
             theBody = theLine.readLine();
@@ -114,28 +114,29 @@ public class NestSession {
             response.close();
 		} catch (ClientProtocolException e) {
 			log.warn("_execute Client Protocol failed: " + e.getMessage());
-			retry = 0;
+			retry = 4;
 			theBody = null;
 		} catch (IOException e) {
 			log.warn("_execute IO failed, count number: " + retry + ", error message: " + e.getMessage());
 			close();
 			if(retry < 3) {
 				try {
-					Thread.sleep(3000);
+					if(retry > 0)
+						Thread.sleep(3000);
 				} catch (InterruptedException e1) {
 					// noop
 				}
+				retry++;	
 				try {
 					_login();
 					theBody = _execute(aRequest);
 				} catch (LoginException e1) {
 					log.warn("_execute retry login failed, count number: " + retry);
 				}
-				retry++;	
 			}
 			else {
 				log.warn("Cannot execute http request, failed 3 times....");
-				retry = 0;
+				retry = 4;
 				theBody = null;
 			}
 		}
