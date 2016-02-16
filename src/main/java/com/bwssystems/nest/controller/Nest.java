@@ -65,24 +65,38 @@ public class Nest {
 	}
 
 	public Thermostat getThermostat(String aName) {
+		if(theSession == null)
+			return null;
 		_getStatus();
 		return theThermostats.get(aName);
 	}
 	
 	public Home getHome(String aName) {
+		if(theSession == null)
+			return null;
 		_getStatus();
 		return theHomes.get(aName);
 	}
 	
 	public Set<String> getThermostatNames() {
+		if(theSession == null)
+			return null;
 		return theThermostats.keySet();
 	}
 
 	public Set<String> getHomeNames() {
+		if(theSession == null)
+			return null;
 		return theHomes.keySet();
 	}
 	
 	public WhereDetail getWhere(String aName) {
+		if(theSession == null)
+			return null;
 		return theStatus.getWhere().getWheres().get(aName);
+	}
+	public void endNestSession() {
+		theSession.close();
+		theSession = null;
 	}
 }
