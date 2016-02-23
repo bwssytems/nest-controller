@@ -77,7 +77,7 @@ public class NestSession {
             StringEntity requestBody = new StringEntity("{\"email\":\"" + theUsername + "\",\"password\":\"" + thePassword + "\"}", parsedContentType);
             postRequest.setEntity(requestBody);
             String authResponse = _execute(postRequest);
-            log.debug("The Response: " + authResponse);
+            log.debug("_login Response: " + authResponse);
             theAuth = new Gson().fromJson(authResponse, SessionAuthorization.class);
             if(theAuth.getAccess_token() == null && theAuth.getUser() == null) {
             	NestError anError = new Gson().fromJson(authResponse, NestError.class);
@@ -138,7 +138,7 @@ public class NestSession {
 			else {
 				log.warn("Cannot execute http request, failed 3 times....");
 				retry = 4;
-				theBody = null;
+				theBody = "Cannot execute http request, failed 3 times....";
 			}
 		}
         return theBody;

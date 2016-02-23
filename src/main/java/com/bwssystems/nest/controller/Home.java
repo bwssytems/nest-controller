@@ -4,10 +4,13 @@ import java.util.Date;
 
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.bwssystems.nest.protocol.status.StructureDetail;
 
 public class Home {
+	private Logger log = LoggerFactory.getLogger(Nest.class);
 	private NestSession theSession;
 	private String theName;
 	private StructureDetail theDetail;
@@ -24,11 +27,14 @@ public class Home {
 	}
 
 	public void setAway(Boolean isAway) {
-		HttpPost postRequest = new HttpPost(theSession.getTransport_url() + "/v2/put/structure." + theName);
+		String theUrl = theSession.getTransport_url() + "/v2/put/structure." + theName;
+		HttpPost postRequest = new HttpPost(theUrl);
 		StringEntity requestBody = new StringEntity("{\"away_timestamp\":" + Long.toString(new Date().getTime()) + ",\"away\":" + isAway.toString() + ",\"away_setter\":0}", NestSession.parsedContentType);
+		log.debug("setAway for home: " + theUrl + " with body: " + requestBody);
         postRequest.setEntity(requestBody);
 
-        theSession.execute(postRequest);
+        String theResponse = theSession.execute(postRequest);
+        log.debug("setAway post request response: " + theResponse);
 	}
 	
 	public StructureDetail getDetail() {

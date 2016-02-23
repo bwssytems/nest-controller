@@ -30,7 +30,8 @@ public class Thermostat {
 	
 	public void setTargetTemperature(Float theTemp) {
         if(theTemp < 33.0 & theTemp > 9.0) {
-			HttpPost postRequest = new HttpPost(theSession.getTransport_url() + "/v2/put/shared." + deviceName);
+    		String theUrl = theSession.getTransport_url() + "/v2/put/shared." + deviceName;
+			HttpPost postRequest = new HttpPost(theUrl);
 	        String target = null;
 	        if(deviceDetail.getCurrentScheduleMode().toLowerCase() == "range") {
 	        	if(theTemp < sharedDetail.getTargetTemperature())
@@ -41,33 +42,41 @@ public class Thermostat {
 	        else
 	        	target = "target_temperature";
 	        StringEntity requestBody = new StringEntity("{\"target_change_pending\":true,\"" + target + "\":" + String.format("%3.1f", theTemp)+ "}", NestSession.parsedContentType);
+	        log.debug("setTargetTemperature for thermostat: " + theUrl + " with body: " + requestBody);
 	        postRequest.setEntity(requestBody);
-	        theSession.execute(postRequest);
+	        String theResponse = theSession.execute(postRequest);
+	        log.debug("setTargetTemperature response: " + theResponse);
         }
         else
-        	log.warn("temperature outside of Nest paramaters of 10C to 33C derees, not setting with this paramter: " + theTemp.toString());
+        	log.warn("setTargetTemperature outside of Nest paramaters of 10C to 33C derees, not setting with this paramter: " + theTemp.toString());
 	}
 	
 	public void setTargetType(String theType) {
         if(theType.equals("cool") || theType.equals("heat") || theType.equals("range") || theType.equals("off")) {
-			HttpPost postRequest = new HttpPost(theSession.getTransport_url() + "/v2/put/shared." + deviceName);
+    		String theUrl = theSession.getTransport_url() + "/v2/put/shared." + deviceName;
+			HttpPost postRequest = new HttpPost(theUrl);
 	        StringEntity requestBody = new StringEntity("{\"target_temperature_type\":\"" + theType + "\"}", NestSession.parsedContentType);
+	        log.debug("setTargetType for thermostat: " + theUrl + " with body: " + requestBody);
 	        postRequest.setEntity(requestBody);
-	        theSession.execute(postRequest);
+	        String theResponse = theSession.execute(postRequest);
+	        log.debug("setTargetType response: " + theResponse);
         }
         else
-        	log.warn("target type of Nest thermostat not one of the following: hest, cool, range or off, not setting with this paramter: " + theType);
+        	log.warn("setTargetType of Nest thermostat not one of the following: hest, cool, range or off, not setting with this paramter: " + theType);
 	}
 	
 	public void setFanMode(String theMode) {
         if(theMode.equals("on") || theMode.equals("auto")) {
-        	HttpPost postRequest = new HttpPost(theSession.getTransport_url() + "/v2/put/device." + deviceName);
+    		String theUrl = theSession.getTransport_url() + "/v2/put/device." + deviceName;
+        	HttpPost postRequest = new HttpPost(theUrl);
 	        StringEntity requestBody = new StringEntity("{\"fan_mode\":\"" + theMode + "\"}", NestSession.parsedContentType);
+	        log.debug("setFanMode for thermostat: " + theUrl + " with body: " + requestBody);
 	        postRequest.setEntity(requestBody);
-	        theSession.execute(postRequest);
+	        String theResponse = theSession.execute(postRequest);
+	        log.debug("setFanMode response: " + theResponse);
         }
         else
-        	log.warn("fan mode of Nest thermostat not one of the following: auto or off, not setting with this paramter: " + theMode);
+        	log.warn("setFanMode of Nest thermostat not one of the following: auto or off, not setting with this paramter: " + theMode);
 	}
 
 	public DeviceDetail getDeviceDetail() {

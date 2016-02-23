@@ -46,9 +46,11 @@ public class Nest {
 	}
 	
 	private void _getStatus() {
-		log.debug("getting status...");
-        HttpGet newRequest = new HttpGet(theSession.getTransport_url() + "/v2/mobile/user." + theSession.getUserid());
+		String theUrl = theSession.getTransport_url() + "/v2/mobile/user." + theSession.getUserid();
+		log.debug("getting status: " + theUrl);
+        HttpGet newRequest = new HttpGet(theUrl);
         String response = theSession.execute(newRequest);
+        log.debug("status response: " + response);
         theStatus = gson.fromJson(response, NestStatus.class);
         for(String key : theStatus.getDevice().getDevices().keySet()) {
         	if(theThermostats.get(key) == null)
