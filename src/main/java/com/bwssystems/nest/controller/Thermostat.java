@@ -1,5 +1,8 @@
 package com.bwssystems.nest.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.slf4j.Logger;
@@ -42,7 +45,13 @@ public class Thermostat {
 	        else
 	        	target = "target_temperature";
 	        StringEntity requestBody = new StringEntity("{\"target_change_pending\":true,\"" + target + "\":" + String.format("%3.1f", theTemp)+ "}", NestSession.parsedContentType);
-	        log.debug("setTargetTemperature for thermostat: " + theUrl + " with body: " + requestBody);
+	        try {
+		        BufferedReader theLine = new BufferedReader(new InputStreamReader(requestBody.getContent()));
+		        log.debug("setTargetTemperature for thermostat: " + theUrl + " with body: " + theLine.readLine());
+	        }
+	        catch(Exception e) {
+	        	log.debug("setTargetTemperature for thermostat: " + theUrl + " with body: error parsing body");
+	        }
 	        postRequest.setEntity(requestBody);
 	        String theResponse = theSession.execute(postRequest);
 	        log.debug("setTargetTemperature response: " + theResponse);
