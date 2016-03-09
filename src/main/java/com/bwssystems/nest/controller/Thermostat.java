@@ -1,8 +1,5 @@
 package com.bwssystems.nest.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.slf4j.Logger;
@@ -36,7 +33,9 @@ public class Thermostat {
     		String theUrl = theSession.getTransport_url() + "/v2/put/shared." + deviceName;
 			HttpPost postRequest = new HttpPost(theUrl);
 	        String target = null;
+	        log.debug("current thermostat target type is: " + deviceDetail.getCurrentScheduleMode());
 	        if(deviceDetail.getCurrentScheduleMode().toLowerCase() == "range") {
+	        	log.debug("current thermostat temperature is: " + Float.toString(sharedDetail.getTargetTemperature()));
 	        	if(theTemp < sharedDetail.getTargetTemperature())
 	        		target = "target_temperature_low";
 	        	else
@@ -44,14 +43,10 @@ public class Thermostat {
 	        }
 	        else
 	        	target = "target_temperature";
-	        StringEntity requestBody = new StringEntity("{\"target_change_pending\":true,\"" + target + "\":" + String.format("%3.1f", theTemp)+ "}", NestSession.parsedContentType);
-	        try {
-		        BufferedReader theLine = new BufferedReader(new InputStreamReader(requestBody.getContent()));
-		        log.debug("setTargetTemperature for thermostat: " + theUrl + " with body: " + theLine.readLine());
-	        }
-	        catch(Exception e) {
-	        	log.debug("setTargetTemperature for thermostat: " + theUrl + " with body: error parsing body");
-	        }
+	        
+	        String requestString = "{\"target_change_pending\":true,\"" + target + "\":" + String.format("%3.1f", theTemp)+ "}";
+	        StringEntity requestBody = new StringEntity(requestString, NestSession.parsedContentType);
+        	log.debug("setTargetTemperature for thermostat: " + theUrl + " with body: " + requestString);
 	        postRequest.setEntity(requestBody);
 	        String theResponse = theSession.execute(postRequest);
 	        log.debug("setTargetTemperature response: " + theResponse);
@@ -61,11 +56,13 @@ public class Thermostat {
 	}
 	
 	public void setTargetType(String theType) {
+        log.debug("current thermostat target type is: " + deviceDetail.getCurrentScheduleMode());
         if(theType.equals("cool") || theType.equals("heat") || theType.equals("range") || theType.equals("off")) {
     		String theUrl = theSession.getTransport_url() + "/v2/put/shared." + deviceName;
 			HttpPost postRequest = new HttpPost(theUrl);
-	        StringEntity requestBody = new StringEntity("{\"target_temperature_type\":\"" + theType + "\"}", NestSession.parsedContentType);
-	        log.debug("setTargetType for thermostat: " + theUrl + " with body: " + requestBody);
+			String requestString = "{\"target_temperature_type\":\"" + theType + "\"}";
+	        StringEntity requestBody = new StringEntity(requestString, NestSession.parsedContentType);
+	        log.debug("setTargetType for thermostat: " + theUrl + " with body: " + requestString);
 	        postRequest.setEntity(requestBody);
 	        String theResponse = theSession.execute(postRequest);
 	        log.debug("setTargetType response: " + theResponse);
@@ -75,11 +72,13 @@ public class Thermostat {
 	}
 	
 	public void setFanMode(String theMode) {
+        log.debug("current thermostat fan mode is: " + deviceDetail.getFanMode());
         if(theMode.equals("on") || theMode.equals("auto")) {
     		String theUrl = theSession.getTransport_url() + "/v2/put/device." + deviceName;
         	HttpPost postRequest = new HttpPost(theUrl);
-	        StringEntity requestBody = new StringEntity("{\"fan_mode\":\"" + theMode + "\"}", NestSession.parsedContentType);
-	        log.debug("setFanMode for thermostat: " + theUrl + " with body: " + requestBody);
+			String requestString = "{\"fan_mode\":\"" + theMode + "\"}";
+	        StringEntity requestBody = new StringEntity(requestString, NestSession.parsedContentType);
+	        log.debug("setFanMode for thermostat: " + theUrl + " with body: " + requestString);
 	        postRequest.setEntity(requestBody);
 	        String theResponse = theSession.execute(postRequest);
 	        log.debug("setFanMode response: " + theResponse);

@@ -29,8 +29,9 @@ public class Home {
 	public void setAway(Boolean isAway) {
 		String theUrl = theSession.getTransport_url() + "/v2/put/structure." + theName;
 		HttpPost postRequest = new HttpPost(theUrl);
-		StringEntity requestBody = new StringEntity("{\"away_timestamp\":" + Long.toString(new Date().getTime()) + ",\"away\":" + isAway.toString() + ",\"away_setter\":0}", NestSession.parsedContentType);
-		log.debug("setAway for home: " + theUrl + " with body: " + requestBody);
+        String requestString = "{\"away_timestamp\":" + Long.toString(new Date().getTime()) + ",\"away\":" + isAway.toString() + ",\"away_setter\":0}";
+		StringEntity requestBody = new StringEntity(requestString, NestSession.parsedContentType);
+		log.debug("setAway for home: " + theUrl + " with body: " + requestString);
         postRequest.setEntity(requestBody);
 
         String theResponse = theSession.execute(postRequest);
