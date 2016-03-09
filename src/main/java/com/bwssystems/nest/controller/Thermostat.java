@@ -34,7 +34,7 @@ public class Thermostat {
 			HttpPost postRequest = new HttpPost(theUrl);
 	        String target = null;
 	        log.debug("current thermostat target type is: " + deviceDetail.getCurrentScheduleMode());
-	        if(deviceDetail.getCurrentScheduleMode().toLowerCase() == "range") {
+	        if(deviceDetail.getCurrentScheduleMode().equalsIgnoreCase("range")) {
 	        	log.debug("current thermostat temperature is: " + Float.toString(sharedDetail.getTargetTemperature()));
 	        	if(theTemp < sharedDetail.getTargetTemperature())
 	        		target = "target_temperature_low";
@@ -57,7 +57,7 @@ public class Thermostat {
 	
 	public void setTargetType(String theType) {
         log.debug("current thermostat target type is: " + deviceDetail.getCurrentScheduleMode());
-        if(theType.equals("cool") || theType.equals("heat") || theType.equals("range") || theType.equals("off")) {
+        if(theType.equalsIgnoreCase("cool") || theType.equalsIgnoreCase("heat") || theType.equalsIgnoreCase("range") || theType.equalsIgnoreCase("off")) {
     		String theUrl = theSession.getTransport_url() + "/v2/put/shared." + deviceName;
 			HttpPost postRequest = new HttpPost(theUrl);
 			String requestString = "{\"target_temperature_type\":\"" + theType + "\"}";
@@ -73,7 +73,7 @@ public class Thermostat {
 	
 	public void setFanMode(String theMode) {
         log.debug("current thermostat fan mode is: " + deviceDetail.getFanMode());
-        if(theMode.equals("on") || theMode.equals("auto")) {
+        if(theMode.equalsIgnoreCase("on") || theMode.equalsIgnoreCase("auto")) {
     		String theUrl = theSession.getTransport_url() + "/v2/put/device." + deviceName;
         	HttpPost postRequest = new HttpPost(theUrl);
 			String requestString = "{\"fan_mode\":\"" + theMode + "\"}";
