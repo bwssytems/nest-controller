@@ -51,27 +51,27 @@ public class StructureDetail {
     @SerializedName("topaz_hush_key")
     @Expose
     private String topazHushKey;
-    @SerializedName("touched_by")
-    @Expose
-    private JsonObject touchedBy;
+//    @SerializedName("touched_by")
+//    @Expose
+//    private JsonObject touchedBy;
     @SerializedName("user")
     @Expose
     private String user;
-    @SerializedName("devices")
-    @Expose
-    private List<String> devices = new ArrayList<String>();
-    @SerializedName("swarm")
-    @Expose
-    private List<String> swarm = new ArrayList<String>();
-    @SerializedName("fabric_ids")
-    @Expose
-    private List<JsonObject> fabricIds = new ArrayList<JsonObject>();
-    @SerializedName("clutches")
-    @Expose
-    private List<JsonObject> clutches = new ArrayList<JsonObject>();
-    @SerializedName("members")
-    @Expose
-    private List<JsonObject> members = new ArrayList<JsonObject>();
+//    @SerializedName("devices")
+//    @Expose
+//    private List<String> devices = new ArrayList<String>();
+//    @SerializedName("swarm")
+//    @Expose
+//    private List<String> swarm = new ArrayList<String>();
+//    @SerializedName("fabric_ids")
+//    @Expose
+//    private List<JsonObject> fabricIds = new ArrayList<JsonObject>();
+//    @SerializedName("clutches")
+//    @Expose
+//    private List<JsonObject> clutches = new ArrayList<JsonObject>();
+//    @SerializedName("members")
+//    @Expose
+//    private List<JsonObject> members = new ArrayList<JsonObject>();
 
     /**
      * 
@@ -312,18 +312,18 @@ public class StructureDetail {
      * @return
      *     The touchedBy
      */
-    public JsonObject getTouchedBy() {
-        return touchedBy;
-    }
+//    public JsonObject getTouchedBy() {
+//        return touchedBy;
+//    }
 
     /**
      * 
      * @param touchedBy
      *     The touched_by
      */
-    public void setTouchedBy(JsonObject touchedBy) {
-        this.touchedBy = touchedBy;
-    }
+ //   public void setTouchedBy(JsonObject touchedBy) {
+//        this.touchedBy = touchedBy;
+//    }
 
     /**
      * 
@@ -348,89 +348,89 @@ public class StructureDetail {
      * @return
      *     The devices
      */
-    public List<String> getDevices() {
-        return devices;
-    }
+//    public List<String> getDevices() {
+//        return devices;
+//    }
 
     /**
      * 
      * @param devices
      *     The devices
      */
-    public void setDevices(List<String> devices) {
-        this.devices = devices;
-    }
+//    public void setDevices(List<String> devices) {
+//        this.devices = devices;
+//    }
 
     /**
      * 
      * @return
      *     The swarm
      */
-    public List<String> getSwarm() {
-        return swarm;
-    }
+//    public List<String> getSwarm() {
+//        return swarm;
+//    }
 
     /**
      * 
      * @param swarm
      *     The swarm
      */
-    public void setSwarm(List<String> swarm) {
-        this.swarm = swarm;
-    }
+//    public void setSwarm(List<String> swarm) {
+//        this.swarm = swarm;
+//    }
 
     /**
      * 
      * @return
      *     The fabricIds
      */
-    public List<JsonObject> getFabricIds() {
-        return fabricIds;
-    }
+//    public List<JsonObject> getFabricIds() {
+//        return fabricIds;
+//    }
 
     /**
      * 
      * @param fabricIds
      *     The fabric_ids
      */
-    public void setFabricIds(List<JsonObject> fabricIds) {
-        this.fabricIds = fabricIds;
-    }
+//    public void setFabricIds(List<JsonObject> fabricIds) {
+//        this.fabricIds = fabricIds;
+//    }
 
     /**
      * 
      * @return
      *     The clutches
      */
-    public List<JsonObject> getClutches() {
-        return clutches;
-    }
+//    public List<JsonObject> getClutches() {
+//        return clutches;
+//    }
 
     /**
      * 
      * @param clutches
      *     The clutches
      */
-    public void setClutches(List<JsonObject> clutches) {
-        this.clutches = clutches;
-    }
+//    public void setClutches(List<JsonObject> clutches) {
+//        this.clutches = clutches;
+//    }
 
     /**
      * 
      * @return
      *     The members
      */
-    public List<JsonObject> getMembers() {
-        return members;
-    }
+//    public List<JsonObject> getMembers() {
+//        return members;
+//    }
 
     /**
      * 
      * @param members
      *     The members
      */
-    public void setMembers(List<JsonObject> members) {
-        this.members = members;
-    }
+//    public void setMembers(List<JsonObject> members) {
+//        this.members = members;
+//    }
 
 }
