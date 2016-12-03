@@ -73,7 +73,7 @@ public class SharedDetail {
     private Boolean targetChangePending;
     @SerializedName("target_temperature")
     @Expose
-    private Long targetTemperature;
+    private Double targetTemperature;
     @SerializedName("target_temperature_high")
     @Expose
     private Long targetTemperatureHigh;
@@ -467,7 +467,7 @@ public class SharedDetail {
      * @return
      *     The targetTemperature
      */
-    public Long getTargetTemperature() {
+    public Double getTargetTemperature() {
         return targetTemperature;
     }
 
@@ -476,7 +476,7 @@ public class SharedDetail {
      * @param targetTemperature
      *     The target_temperature
      */
-    public void setTargetTemperature(Long targetTemperature) {
+    public void setTargetTemperature(Double targetTemperature) {
         this.targetTemperature = targetTemperature;
     }
 
