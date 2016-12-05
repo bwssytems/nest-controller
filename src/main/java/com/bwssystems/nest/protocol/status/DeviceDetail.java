@@ -51,9 +51,9 @@ public class DeviceDetail {
     @SerializedName("aux_lockout_leaf")
     @Expose
     private Long auxLockoutLeaf;
-//    @SerializedName("available_locales")
-//    @Expose
-//    private String availableLocales;
+    @SerializedName("available_locales")
+    @Expose
+    private String availableLocales;
     @SerializedName("away_temperature_high")
     @Expose
     private Double awayTemperatureHigh;
@@ -66,48 +66,48 @@ public class DeviceDetail {
     @SerializedName("away_temperature_low_enabled")
     @Expose
     private Boolean awayTemperatureLowEnabled;
-//    @SerializedName("backplate_bsl_info")
-//    @Expose
-//    private String backplateBslInfo;
-//    @SerializedName("backplate_bsl_version")
-//    @Expose
-//    private String backplateBslVersion;
-//    @SerializedName("backplate_model")
-//    @Expose
-//    private String backplateModel;
-//    @SerializedName("backplate_mono_info")
-//    @Expose
-//    private String backplateMonoInfo;
-//    @SerializedName("backplate_mono_version")
-//    @Expose
-//    private String backplateMonoVersion;
-//    @SerializedName("backplate_serial_number")
-//    @Expose
-//    private String backplateSerialNumber;
-//    @SerializedName("battery_level")
-//    @Expose
-//    private Double batteryLevel;
-//    @SerializedName("capability_level")
-//    @Expose
-//    private Long capabilityLevel;
-//    @SerializedName("click_sound")
-//    @Expose
-//    private String clickSound;
-//    @SerializedName("compressor_lockout_leaf")
-//    @Expose
-//    private Double compressorLockoutLeaf;
-//    @SerializedName("cooling_delivery")
-//    @Expose
-//    private String coolingDelivery;
-//    @SerializedName("cooling_source")
-//    @Expose
-//    private String coolingSource;
-//    @SerializedName("cooling_x2_delivery")
-//    @Expose
-//    private String coolingX2Delivery;
-//    @SerializedName("cooling_x2_source")
-//    @Expose
-//    private String coolingX2Source;
+    @SerializedName("backplate_bsl_info")
+    @Expose
+    private String backplateBslInfo;
+    @SerializedName("backplate_bsl_version")
+    @Expose
+    private String backplateBslVersion;
+    @SerializedName("backplate_model")
+    @Expose
+    private String backplateModel;
+    @SerializedName("backplate_mono_info")
+    @Expose
+    private String backplateMonoInfo;
+    @SerializedName("backplate_mono_version")
+    @Expose
+    private String backplateMonoVersion;
+    @SerializedName("backplate_serial_number")
+    @Expose
+    private String backplateSerialNumber;
+    @SerializedName("battery_level")
+    @Expose
+    private Double batteryLevel;
+    @SerializedName("capability_level")
+    @Expose
+    private Long capabilityLevel;
+    @SerializedName("click_sound")
+    @Expose
+    private String clickSound;
+    @SerializedName("compressor_lockout_leaf")
+    @Expose
+    private Double compressorLockoutLeaf;
+    @SerializedName("cooling_delivery")
+    @Expose
+    private String coolingDelivery;
+    @SerializedName("cooling_source")
+    @Expose
+    private String coolingSource;
+    @SerializedName("cooling_x2_delivery")
+    @Expose
+    private String coolingX2Delivery;
+    @SerializedName("cooling_x2_source")
+    @Expose
+    private String coolingX2Source;
     @SerializedName("country_code")
     @Expose
     private String countryCode;
@@ -399,6 +399,9 @@ public class DeviceDetail {
     @SerializedName("nlclient_state")
     @Expose
     private String nlclientState;
+    @SerializedName("note_codes")
+    @Expose
+    private List<JsonObject> noteCodes = new ArrayList<JsonObject>();
     @SerializedName("ob_orientation")
     @Expose
     private String obOrientation;
@@ -435,6 +438,9 @@ public class DeviceDetail {
     @SerializedName("pin_y2_description")
     @Expose
     private String pinY2Description;
+    @SerializedName("postal_code")
+    @Expose
+    private String postalCode;
     @SerializedName("preconditioning_active")
     @Expose
     private Boolean preconditioningActive;
@@ -450,6 +456,9 @@ public class DeviceDetail {
     @SerializedName("range_enable")
     @Expose
     private Boolean rangeEnable;
+    @SerializedName("rssi")
+    @Expose
+    private Long rssi;
     @SerializedName("safety_temp_activating_hvac")
     @Expose
     private Boolean safetyTempActivatingHvac;
@@ -506,6 +515,9 @@ public class DeviceDetail {
     private String timeToTargetTraining;
     @SerializedName("touched_by")
     @Expose
+    private JsonObject touchedBy;
+    @SerializedName("type")
+    @Expose
     private String type;
     @SerializedName("upper_safety_temp")
     @Expose
@@ -519,6 +531,12 @@ public class DeviceDetail {
     @SerializedName("where_id")
     @Expose
     private String whereId;
+    @SerializedName("y2_type")
+    @Expose
+    private String y2Type;
+    @SerializedName("schedules")
+    @Expose
+    private List<JsonObject> schedules = new ArrayList<JsonObject>();
 
     /**
      * 
@@ -753,6 +771,25 @@ public class DeviceDetail {
     public void setAuxLockoutLeaf(Long auxLockoutLeaf) {
         this.auxLockoutLeaf = auxLockoutLeaf;
     }
+
+    /**
+     * 
+     * @return
+     *     The availableLocales
+     */
+    public String getAvailableLocales() {
+        return availableLocales;
+    }
+
+    /**
+     * 
+     * @param availableLocales
+     *     The available_locales
+     */
+    public void setAvailableLocales(String availableLocales) {
+        this.availableLocales = availableLocales;
+    }
+
     /**
      * 
      * @return
@@ -823,6 +860,258 @@ public class DeviceDetail {
      */
     public void setAwayTemperatureLowEnabled(Boolean awayTemperatureLowEnabled) {
         this.awayTemperatureLowEnabled = awayTemperatureLowEnabled;
+    }
+
+    /**
+     * 
+     * @return
+     *     The backplateBslInfo
+     */
+    public String getBackplateBslInfo() {
+        return backplateBslInfo;
+    }
+
+    /**
+     * 
+     * @param backplateBslInfo
+     *     The backplate_bsl_info
+     */
+    public void setBackplateBslInfo(String backplateBslInfo) {
+        this.backplateBslInfo = backplateBslInfo;
+    }
+
+    /**
+     * 
+     * @return
+     *     The backplateBslVersion
+     */
+    public String getBackplateBslVersion() {
+        return backplateBslVersion;
+    }
+
+    /**
+     * 
+     * @param backplateBslVersion
+     *     The backplate_bsl_version
+     */
+    public void setBackplateBslVersion(String backplateBslVersion) {
+        this.backplateBslVersion = backplateBslVersion;
+    }
+
+    /**
+     * 
+     * @return
+     *     The backplateModel
+     */
+    public String getBackplateModel() {
+        return backplateModel;
+    }
+
+    /**
+     * 
+     * @param backplateModel
+     *     The backplate_model
+     */
+    public void setBackplateModel(String backplateModel) {
+        this.backplateModel = backplateModel;
+    }
+
+    /**
+     * 
+     * @return
+     *     The backplateMonoInfo
+     */
+    public String getBackplateMonoInfo() {
+        return backplateMonoInfo;
+    }
+
+    /**
+     * 
+     * @param backplateMonoInfo
+     *     The backplate_mono_info
+     */
+    public void setBackplateMonoInfo(String backplateMonoInfo) {
+        this.backplateMonoInfo = backplateMonoInfo;
+    }
+
+    /**
+     * 
+     * @return
+     *     The backplateMonoVersion
+     */
+    public String getBackplateMonoVersion() {
+        return backplateMonoVersion;
+    }
+
+    /**
+     * 
+     * @param backplateMonoVersion
+     *     The backplate_mono_version
+     */
+    public void setBackplateMonoVersion(String backplateMonoVersion) {
+        this.backplateMonoVersion = backplateMonoVersion;
+    }
+
+    /**
+     * 
+     * @return
+     *     The backplateSerialNumber
+     */
+    public String getBackplateSerialNumber() {
+        return backplateSerialNumber;
+    }
+
+    /**
+     * 
+     * @param backplateSerialNumber
+     *     The backplate_serial_number
+     */
+    public void setBackplateSerialNumber(String backplateSerialNumber) {
+        this.backplateSerialNumber = backplateSerialNumber;
+    }
+
+    /**
+     * 
+     * @return
+     *     The batteryLevel
+     */
+    public Double getBatteryLevel() {
+        return batteryLevel;
+    }
+
+    /**
+     * 
+     * @param batteryLevel
+     *     The battery_level
+     */
+    public void setBatteryLevel(Double batteryLevel) {
+        this.batteryLevel = batteryLevel;
+    }
+
+    /**
+     * 
+     * @return
+     *     The capabilityLevel
+     */
+    public Long getCapabilityLevel() {
+        return capabilityLevel;
+    }
+
+    /**
+     * 
+     * @param capabilityLevel
+     *     The capability_level
+     */
+    public void setCapabilityLevel(Long capabilityLevel) {
+        this.capabilityLevel = capabilityLevel;
+    }
+
+    /**
+     * 
+     * @return
+     *     The clickSound
+     */
+    public String getClickSound() {
+        return clickSound;
+    }
+
+    /**
+     * 
+     * @param clickSound
+     *     The click_sound
+     */
+    public void setClickSound(String clickSound) {
+        this.clickSound = clickSound;
+    }
+
+    /**
+     * 
+     * @return
+     *     The compressorLockoutLeaf
+     */
+    public Double getCompressorLockoutLeaf() {
+        return compressorLockoutLeaf;
+    }
+
+    /**
+     * 
+     * @param compressorLockoutLeaf
+     *     The compressor_lockout_leaf
+     */
+    public void setCompressorLockoutLeaf(Double compressorLockoutLeaf) {
+        this.compressorLockoutLeaf = compressorLockoutLeaf;
+    }
+
+    /**
+     * 
+     * @return
+     *     The coolingDelivery
+     */
+    public String getCoolingDelivery() {
+        return coolingDelivery;
+    }
+
+    /**
+     * 
+     * @param coolingDelivery
+     *     The cooling_delivery
+     */
+    public void setCoolingDelivery(String coolingDelivery) {
+        this.coolingDelivery = coolingDelivery;
+    }
+
+    /**
+     * 
+     * @return
+     *     The coolingSource
+     */
+    public String getCoolingSource() {
+        return coolingSource;
+    }
+
+    /**
+     * 
+     * @param coolingSource
+     *     The cooling_source
+     */
+    public void setCoolingSource(String coolingSource) {
+        this.coolingSource = coolingSource;
+    }
+
+    /**
+     * 
+     * @return
+     *     The coolingX2Delivery
+     */
+    public String getCoolingX2Delivery() {
+        return coolingX2Delivery;
+    }
+
+    /**
+     * 
+     * @param coolingX2Delivery
+     *     The cooling_x2_delivery
+     */
+    public void setCoolingX2Delivery(String coolingX2Delivery) {
+        this.coolingX2Delivery = coolingX2Delivery;
+    }
+
+    /**
+     * 
+     * @return
+     *     The coolingX2Source
+     */
+    public String getCoolingX2Source() {
+        return coolingX2Source;
+    }
+
+    /**
+     * 
+     * @param coolingX2Source
+     *     The cooling_x2_source
+     */
+    public void setCoolingX2Source(String coolingX2Source) {
+        this.coolingX2Source = coolingX2Source;
     }
 
     /**
@@ -2574,6 +2863,24 @@ public class DeviceDetail {
     /**
      * 
      * @return
+     *     The noteCodes
+     */
+    public List<JsonObject> getNoteCodes() {
+        return noteCodes;
+    }
+
+    /**
+     * 
+     * @param noteCodes
+     *     The note_codes
+     */
+    public void setNoteCodes(List<JsonObject> noteCodes) {
+        this.noteCodes = noteCodes;
+    }
+
+    /**
+     * 
+     * @return
      *     The obOrientation
      */
     public String getObOrientation() {
@@ -2790,6 +3097,24 @@ public class DeviceDetail {
     /**
      * 
      * @return
+     *     The postalCode
+     */
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    /**
+     * 
+     * @param postalCode
+     *     The postal_code
+     */
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    /**
+     * 
+     * @return
      *     The preconditioningActive
      */
     public Boolean getPreconditioningActive() {
@@ -2875,6 +3200,24 @@ public class DeviceDetail {
      */
     public void setRangeEnable(Boolean rangeEnable) {
         this.rangeEnable = rangeEnable;
+    }
+
+    /**
+     * 
+     * @return
+     *     The rssi
+     */
+    public Long getRssi() {
+        return rssi;
+    }
+
+    /**
+     * 
+     * @param rssi
+     *     The rssi
+     */
+    public void setRssi(Long rssi) {
+        this.rssi = rssi;
     }
 
     /**
@@ -3204,6 +3547,24 @@ public class DeviceDetail {
     /**
      * 
      * @return
+     *     The touchedBy
+     */
+    public JsonObject getTouchedBy() {
+        return touchedBy;
+    }
+
+    /**
+     * 
+     * @param touchedBy
+     *     The touched_by
+     */
+    public void setTouchedBy(JsonObject touchedBy) {
+        this.touchedBy = touchedBy;
+    }
+
+    /**
+     * 
+     * @return
      *     The type
      */
     public String getType() {
@@ -3290,4 +3651,41 @@ public class DeviceDetail {
     public void setWhereId(String whereId) {
         this.whereId = whereId;
     }
+
+    /**
+     * 
+     * @return
+     *     The y2Type
+     */
+    public String getY2Type() {
+        return y2Type;
+    }
+
+    /**
+     * 
+     * @param y2Type
+     *     The y2_type
+     */
+    public void setY2Type(String y2Type) {
+        this.y2Type = y2Type;
+    }
+
+    /**
+     * 
+     * @return
+     *     The schedules
+     */
+    public List<JsonObject> getSchedules() {
+        return schedules;
+    }
+
+    /**
+     * 
+     * @param schedules
+     *     The schedules
+     */
+    public void setSchedules(List<JsonObject> schedules) {
+        this.schedules = schedules;
+    }
+
 }

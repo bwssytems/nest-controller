@@ -20,7 +20,10 @@ public class DeviceDeserializer implements JsonDeserializer<Device> {
 
         devices = new HashMap<String, DeviceDetail>();
         for(Entry<String, JsonElement> entry:obj.entrySet()){
-            DeviceDetail newDevice = new Gson().fromJson(obj.getAsJsonObject(entry.getKey()),DeviceDetail.class);
+            DeviceDetail newDevice = new DeviceDetail();
+            JsonObject theRawDetail = obj.getAsJsonObject(entry.getKey());
+            newDevice.setCurrentScheduleMode(theRawDetail.get("current_schedule_mode").getAsString());
+            newDevice.setFanMode(theRawDetail.get("fan_mode").getAsString());
             devices.put(entry.getKey(), newDevice);
         } 
         return new Device(devices);
