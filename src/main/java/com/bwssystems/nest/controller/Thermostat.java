@@ -35,7 +35,7 @@ public class Thermostat {
 	        String target = null;
 	        log.debug("current thermostat target type is: " + deviceDetail.getCurrentScheduleMode());
 	        if(deviceDetail.getCurrentScheduleMode().equalsIgnoreCase("range")) {
-	        	log.debug("current thermostat temperature is: " + Float.toString(sharedDetail.getTargetTemperature()));
+	        	log.debug("current thermostat temperature is: " + Double.toString(sharedDetail.getTargetTemperature()));
 	        	if(theTemp < sharedDetail.getTargetTemperature())
 	        		target = "target_temperature_low";
 	        	else
