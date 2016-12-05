@@ -43,6 +43,11 @@ When using this library you will need the following in your maven build or the e
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
             <artifactId>log4j-over-slf4j</artifactId>
             <version>1.7.5</version>
         </dependency>
@@ -51,6 +56,22 @@ When using this library you will need the following in your maven build or the e
             <artifactId>gson</artifactId>
             <version>2.2.4</version>
         </dependency>
+```
+Also, you will need to provide a logging implementation and some choices below:
+```
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.5</version>
+		</dependency>
+
+OR
+
+		<dependency>
+    		<groupId>commons-logging</groupId>
+    		<artifactId>commons-logging</artifactId>
+    		<version>1.2</version>
+		</dependency>
 ```
 ## Usage
 To start using the controller, the following items need to be done:
