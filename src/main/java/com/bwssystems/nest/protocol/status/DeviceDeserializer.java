@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -24,7 +23,8 @@ public class DeviceDeserializer implements JsonDeserializer<Device> {
             JsonObject theRawDetail = obj.getAsJsonObject(entry.getKey());
             newDevice.setCurrentScheduleMode(theRawDetail.get("current_schedule_mode").getAsString());
             newDevice.setFanMode(theRawDetail.get("fan_mode").getAsString());
-            newDevice.setWhereId(theRawDetail.get("where_id").getAsString());
+            if(!theRawDetail.get("where_id").isJsonNull())
+            	newDevice.setWhereId(theRawDetail.get("where_id").getAsString());
             devices.put(entry.getKey(), newDevice);
         } 
         return new Device(devices);
