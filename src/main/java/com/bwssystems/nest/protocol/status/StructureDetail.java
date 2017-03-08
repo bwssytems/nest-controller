@@ -1,11 +1,8 @@
 
 package com.bwssystems.nest.protocol.status;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.Generated;
 
-import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

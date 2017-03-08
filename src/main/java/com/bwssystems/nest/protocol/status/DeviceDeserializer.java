@@ -23,7 +23,7 @@ public class DeviceDeserializer implements JsonDeserializer<Device> {
             JsonObject theRawDetail = obj.getAsJsonObject(entry.getKey());
             newDevice.setCurrentScheduleMode(theRawDetail.get("current_schedule_mode").getAsString());
             newDevice.setFanMode(theRawDetail.get("fan_mode").getAsString());
-            if(!theRawDetail.get("where_id").isJsonNull())
+            if(theRawDetail.get("where_id") != null && !theRawDetail.get("where_id").isJsonNull())
             	newDevice.setWhereId(theRawDetail.get("where_id").getAsString());
             devices.put(entry.getKey(), newDevice);
         } 

@@ -18,7 +18,7 @@ Another way to include this project is thru the use of jitpack.io to include thi
 		<dependency>
 		    <groupId>com.github.bwssytems</groupId>
 		    <artifactId>nest-controller</artifactId>
-		    <version>1.0.10</version>
+		    <version>1.0.14</version>
 		</dependency>
 	</dependencies>
 ```
